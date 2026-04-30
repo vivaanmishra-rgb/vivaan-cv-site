@@ -2,8 +2,153 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Github, Award, BookOpen, Code, Languages, Heart } from "lucide-react";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    // Snake Game Logic
+    const TILE = 20;
+    const COLS = 25;
+    const SIZE = TILE * COLS;
+    const canvas = document.getElementById('snake-canvas') as HTMLCanvasElement;
+    const ctx = canvas?.getContext('2d');
+    
+    let snake: any[] = [];
+    let dir = { x: 0, y: -1 };
+    let nextDir = { x: 0, y: -1 };
+    let food: any = null;
+    let score = 0;
+    let highScore = 0;
+    let running = false;
+    
+    function pad(n: number) { return String(n).padStart(4, '0'); }
+    
+    function randFood(s: any[]) {
+      let f: any;
+      do {
+        f = { x: Math.floor(Math.random() * COLS), y: Math.floor(Math.random() * COLS) };
+      } while (s.some(seg => seg.x === f.x && seg.y === f.y));
+      return f;
+    }
+    
+    (window as any).startGame = function() {
+      snake = [{ x: 12, y: 10 }, { x: 12, y: 11 }, { x: 12, y: 12 }];
+      dir = { x: 0, y: -1 };
+      nextDir = { x: 0, y: -1 };
+      score = 0;
+      food = randFood(snake);
+      running = true;
+      const overlay = document.getElementById('overlay');
+      if (overlay) overlay.style.display = 'none';
+      const scoreDisplay = document.getElementById('score-display');
+      if (scoreDisplay) scoreDisplay.textContent = 'SCORE: ' + pad(0);
+      tick();
+    };
+    
+    function tick() {
+      if (!running) return;
+      dir = { ...nextDir };
+      const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+      
+      if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= COLS ||
+          snake.some((s: any) => s.x === head.x && s.y === head.y)) {
+        endGame(); return;
+      }
+      
+      snake.unshift(head);
+      
+      if (head.x === food.x && head.y === food.y) {
+        score += 10;
+        if (score > highScore) highScore = score;
+        food = randFood(snake);
+        const scoreDisplay = document.getElementById('score-display');
+        const hiDisplay = document.getElementById('hi-display');
+        if (scoreDisplay) scoreDisplay.textContent = 'SCORE: ' + pad(score);
+        if (hiDisplay) hiDisplay.textContent = 'HI-SCORE: ' + pad(highScore);
+      } else {
+        snake.pop();
+      }
+      
+      draw();
+      setTimeout(tick, Math.max(60, 120 - Math.min(score, 80)));
+    }
+    
+    function endGame() {
+      running = false;
+      draw();
+      const overlay = document.getElementById('overlay');
+      const overlayTitle = document.getElementById('overlay-title');
+      const overlayScore = document.getElementById('overlay-score');
+      const overlaySub = document.getElementById('overlay-sub');
+      const startBtn = document.getElementById('start-btn');
+      
+      if (overlayTitle) {
+        overlayTitle.textContent = 'GAME OVER';
+        overlayTitle.style.color = '#ff3333';
+        overlayTitle.style.textShadow = '0 0 20px #ff3333';
+      }
+      if (overlayScore) {
+        overlayScore.style.display = 'block';
+        overlayScore.textContent = 'FINAL SCORE: ' + score;
+      }
+      if (overlaySub) overlaySub.textContent = '';
+      if (startBtn) startBtn.textContent = 'INITIALIZE REBOOT';
+      if (overlay) overlay.style.display = 'flex';
+    }
+    
+    function draw() {
+      if (!ctx) return;
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, SIZE, SIZE);
+      
+      ctx.strokeStyle = '#0d2b0d';
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i <= COLS; i++) {
+        ctx.beginPath(); ctx.moveTo(i * TILE, 0); ctx.lineTo(i * TILE, SIZE); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, i * TILE); ctx.lineTo(SIZE, i * TILE); ctx.stroke();
+      }
+      
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#ffaa00';
+      ctx.fillStyle = '#ffaa00';
+      ctx.fillRect(food.x * TILE + 3, food.y * TILE + 3, TILE - 6, TILE - 6);
+      ctx.shadowBlur = 0;
+      
+      snake.forEach((seg: any, i: number) => {
+        if (i === 0) {
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = '#00ff41';
+          ctx.fillStyle = '#55ff55';
+        } else {
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#00cc00';
+        }
+        ctx.fillRect(seg.x * TILE + 1, seg.y * TILE + 1, TILE - 2, TILE - 2);
+      });
+      ctx.shadowBlur = 0;
+    }
+    
+    if (ctx) draw();
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d',
+           'W','A','S','D'].includes(e.key)) e.preventDefault();
+      if (!running) return;
+      switch (e.key) {
+        case 'ArrowUp':  case 'w': case 'W': if (dir.y !== 1)  nextDir = { x: 0, y: -1 }; break;
+        case 'ArrowDown':case 's': case 'S': if (dir.y !== -1) nextDir = { x: 0, y:  1 }; break;
+        case 'ArrowLeft':case 'a': case 'A': if (dir.x !== 1)  nextDir = { x: -1,y:  0 }; break;
+        case 'ArrowRight':case 'd':case 'D': if (dir.x !== -1) nextDir = { x: 1, y:  0 }; break;
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
       {/* Navigation */}
@@ -17,6 +162,7 @@ export default function Home() {
             <a href="#about" className="text-gray-300 hover:text-cyan-400 transition">About</a>
             <a href="#achievements" className="text-gray-300 hover:text-cyan-400 transition">Achievements</a>
             <a href="#skills" className="text-gray-300 hover:text-cyan-400 transition">Skills</a>
+            <a href="#fun" className="text-gray-300 hover:text-cyan-400 transition">Fun</a>
             <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition">Contact</a>
           </div>
         </div>
@@ -257,6 +403,39 @@ export default function Home() {
               <h3 className="text-xl font-bold text-white mb-2">Cricket</h3>
               <p className="text-gray-300">Competitive all-rounder with a passion for the sport</p>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Fun Section - Snake Game */}
+      <section id="fun" className="py-20 px-4 bg-gradient-to-b from-slate-950 to-slate-900 border-t border-green-500/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black mb-12">
+            <span className="text-green-400">// </span>
+            <span className="text-white">Have Some Fun</span>
+          </h2>
+          <p className="text-gray-300 text-center mb-12 text-lg">Take a break and play Terminal Snake — navigate the grid, consume the sectors, and don't crash!</p>
+          
+          <div className="flex flex-col items-center">
+            <div className="mb-4 flex justify-between w-full max-w-[520px] text-cyan-400 font-mono text-sm">
+              <span id="score-display">SCORE: 0000</span>
+              <span id="hi-display">HI-SCORE: 0000</span>
+            </div>
+            <div className="relative border-2 border-green-400 shadow-lg shadow-green-400/50 p-2 bg-slate-900">
+              <canvas id="snake-canvas" width="500" height="500" className="border border-green-400/50 block"></canvas>
+              <div className="game-overlay absolute inset-0 flex flex-col items-center justify-center bg-slate-900/90 backdrop-blur-sm" id="overlay">
+                <div className="overlay-title text-3xl font-black text-green-400 mb-2 tracking-wide" id="overlay-title">TERMINAL SNAKE</div>
+                <div className="overlay-sub text-gray-400 text-sm mb-6" id="overlay-sub">Use Arrow Keys or WASD to move</div>
+                <div className="overlay-score text-cyan-400 text-sm hidden" id="overlay-score"></div>
+                <button className="px-8 py-3 bg-transparent border-2 border-green-400 text-green-400 font-mono font-bold text-sm tracking-widest hover:bg-green-400 hover:text-slate-900 transition" id="start-btn" onClick={() => (window as any).startGame()}>EXECUTE PROGRAM</button>
+              </div>
+            </div>
+            <div className="mt-6 flex gap-6 text-xs text-gray-500 font-mono flex-wrap justify-center">
+              <span><kbd className="border border-gray-600 px-2 py-1 rounded">W</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">↑</kbd> UP</span>
+              <span><kbd className="border border-gray-600 px-2 py-1 rounded">A</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">←</kbd> LEFT</span>
+              <span><kbd className="border border-gray-600 px-2 py-1 rounded">S</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">↓</kbd> DOWN</span>
+              <span><kbd className="border border-gray-600 px-2 py-1 rounded">D</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">→</kbd> RIGHT</span>
+            </div>
           </div>
         </div>
       </section>
