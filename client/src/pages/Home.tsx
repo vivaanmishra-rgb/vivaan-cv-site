@@ -10,13 +10,15 @@ export default function Home() {
     const TILE = 20;
     const COLS = 25;
     const SIZE = TILE * COLS;
-    const canvas = document.getElementById('snake-canvas') as HTMLCanvasElement;
-    const ctx = canvas?.getContext('2d');
+    const canvas = document.getElementById('snake-canvas') as HTMLCanvasElement | null;
+    if (!canvas) return; // Exit if canvas not found
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return; // Exit if context not available
     
-    let snake: any[] = [];
+    let snake: any[] = [{ x: 12, y: 10 }, { x: 12, y: 11 }, { x: 12, y: 12 }];
     let dir = { x: 0, y: -1 };
     let nextDir = { x: 0, y: -1 };
-    let food: any = null;
+    let food: any = { x: 5, y: 5 };
     let score = 0;
     let highScore = 0;
     let running = false;
@@ -128,7 +130,7 @@ export default function Home() {
       ctx.shadowBlur = 0;
     }
     
-    if (ctx) draw();
+    draw();
     
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d',
