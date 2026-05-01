@@ -166,6 +166,7 @@ export default function Home() {
             <a href="#achievements" className="text-gray-300 hover:text-cyan-400 transition">Achievements</a>
             <a href="#roadmap" className="text-gray-300 hover:text-amber-400 transition">Roadmap</a>
             <a href="#skills" className="text-gray-300 hover:text-cyan-400 transition">Skills</a>
+            <a href="#faq" className="text-gray-300 hover:text-amber-400 transition">FAQ</a>
             <a href="#fun" className="text-gray-300 hover:text-cyan-400 transition">Fun</a>
             <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition">Contact</a>
           </div>
@@ -543,6 +544,63 @@ export default function Home() {
               <span><kbd className="border border-gray-600 px-2 py-1 rounded">A</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">←</kbd> LEFT</span>
               <span><kbd className="border border-gray-600 px-2 py-1 rounded">S</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">↓</kbd> DOWN</span>
               <span><kbd className="border border-gray-600 px-2 py-1 rounded">D</kbd> / <kbd className="border border-gray-600 px-2 py-1 rounded">→</kbd> RIGHT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 px-4 bg-gradient-to-b from-slate-950 to-slate-900 border-t border-amber-500/20">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-black mb-12 text-center">
+            <span className="text-amber-400">// </span>
+            <span className="text-white">FAQ</span>
+            <span className="text-amber-400 ml-2">?</span>
+          </h2>
+
+          <div className="space-y-6">
+            {/* FAQ Item 1 */}
+            <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-6 hover:border-amber-500/50 transition">
+              <h3 className="text-xl font-bold text-amber-400 mb-3 flex items-center gap-2">
+                <span className="text-2xl">💰</span>
+                How much money is a neurosurgeon job?
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
+                Neurosurgeons are among the highest-paid physicians in the United States. The average salary ranges from <strong>$600,000 to $800,000+ per year</strong>, depending on experience, location, and specialization. Some experienced neurosurgeons in private practice or specialized fields can earn over $1 million annually. Beyond salary, neurosurgeons also have the opportunity to conduct research, teach, and make a meaningful impact on patients' lives.
+              </p>
+            </div>
+
+            {/* FAQ Item 2 */}
+            <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-6 hover:border-amber-500/50 transition">
+              <h3 className="text-xl font-bold text-amber-400 mb-3 flex items-center gap-2">
+                <span className="text-2xl">🏏</span>
+                How is cricket played?
+              </h3>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Cricket is a bat-and-ball sport played between two teams of 11 players each. Here are the basics:
+              </p>
+              <ul className="text-gray-300 space-y-2 ml-4">
+                <li className="flex gap-2">
+                  <span className="text-amber-400">▸</span>
+                  <span><strong>Objective:</strong> Score more runs than the opposing team while dismissing their batsmen</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-amber-400">▸</span>
+                  <span><strong>Batting:</strong> Two batsmen stand at opposite ends of a 22-yard pitch. The bowler (pitcher) throws the ball, and the batter tries to hit it and run to the other end</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-amber-400">▸</span>
+                  <span><strong>Runs:</strong> Each completed run between the wickets = 1 run. Hitting the ball to the boundary = 4 runs. Hitting over the boundary = 6 runs</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-amber-400">▸</span>
+                  <span><strong>Dismissal:</strong> A batsman is out if bowled, caught, LBW (leg before wicket), or stumped</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-amber-400">▸</span>
+                  <span><strong>Formats:</strong> Test (5 days), ODI (One Day International, 50 overs), T20 (20 overs per side)</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
