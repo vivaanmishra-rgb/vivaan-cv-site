@@ -281,10 +281,14 @@ export default function Home() {
                 <div className="text-4xl">🏏</div>
                 <div>
                   <h3 className="text-2xl font-bold text-white">Cricket Excellence</h3>
-                  <p className="text-green-400 text-sm">Batting All-Rounder</p>
+                  <p className="text-green-400 text-sm">Top Order Batsman (#3) | All-Rounder</p>
                 </div>
               </div>
               <ul className="space-y-3 text-gray-300">
+                <li className="flex items-center gap-2">
+                  <span className="text-green-400">▸</span>
+                  <strong>Highest Score:</strong> 101* (Not Out)
+                </li>
                 <li className="flex items-center gap-2">
                   <span className="text-green-400">▸</span>
                   National Trophy Winner (2-3 times)
@@ -305,18 +309,22 @@ export default function Home() {
               <div className="flex items-start gap-4 mb-6">
                 <div className="text-4xl">🎓</div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Academic Focus</h3>
-                  <p className="text-cyan-400 text-sm">Honors Student</p>
+                  <h3 className="text-2xl font-bold text-white">Academic Excellence</h3>
+                  <p className="text-cyan-400 text-sm">Honors Student & NJHS Member</p>
                 </div>
               </div>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center gap-2">
                   <span className="text-cyan-400">▸</span>
-                  ELA Honors
+                  ELA Honors & IPC Honors (Current)
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-cyan-400">▸</span>
-                  IPC (Integrated Physics & Chemistry) Honors
+                  🏅 National Junior Honors Society (NJHS) Member
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-cyan-400">▸</span>
+                  Planned: AP Human Geography & AP Psychology
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-cyan-400">▸</span>
@@ -391,7 +399,7 @@ export default function Home() {
             <Card className="bg-slate-800/50 border-cyan-500/20 p-6 hover:scale-105 transition">
               <div className="text-5xl mb-4">🧠</div>
               <h3 className="text-xl font-bold text-white mb-2">Neuroscience</h3>
-              <p className="text-gray-300">Fascinated by brain structure, neural pathways, and cognitive functions</p>
+              <p className="text-gray-300">Passionate about <strong>brain imaging</strong> and <strong>neural plasticity</strong> — exploring how the brain adapts and heals</p>
             </Card>
 
             <Card className="bg-slate-800/50 border-green-500/20 p-6 hover:scale-105 transition">
