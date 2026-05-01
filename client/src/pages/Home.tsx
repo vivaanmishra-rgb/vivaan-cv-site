@@ -159,10 +159,12 @@ export default function Home() {
           <div className="text-2xl font-bold">
             <span className="text-cyan-400 glow-text">&gt;_</span>
             <span className="text-white ml-2">Vivaan Mishra</span>
+            <span className="text-amber-400 ml-2">✦</span>
           </div>
           <div className="flex gap-6 text-sm">
             <a href="#about" className="text-gray-300 hover:text-cyan-400 transition">About</a>
             <a href="#achievements" className="text-gray-300 hover:text-cyan-400 transition">Achievements</a>
+            <a href="#roadmap" className="text-gray-300 hover:text-amber-400 transition">Roadmap</a>
             <a href="#skills" className="text-gray-300 hover:text-cyan-400 transition">Skills</a>
             <a href="#fun" className="text-gray-300 hover:text-cyan-400 transition">Fun</a>
             <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition">Contact</a>
@@ -332,6 +334,102 @@ export default function Home() {
                 </li>
               </ul>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Roadmap Section */}
+      <section id="roadmap" className="py-20 px-4 bg-gradient-to-b from-slate-900/50 to-slate-950 border-t border-amber-500/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-black mb-12">
+            <span className="text-amber-400">// </span>
+            <span className="text-white">My Journey</span>
+            <span className="text-amber-400 ml-2">✦</span>
+          </h2>
+          <p className="text-gray-300 text-center mb-16 text-lg max-w-3xl mx-auto">
+            Two ambitious dreams, one incredible journey. Here's my roadmap to excellence in medicine and cricket.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Medical Path */}
+            <div className="relative">
+              <h3 className="text-2xl font-bold text-amber-400 mb-8 flex items-center gap-2">
+                <span className="text-3xl">🧠</span>
+                Path to Harvard Medical
+              </h3>
+              <div className="space-y-6 relative">
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">8th Grade (Now)</p>
+                    <p className="text-gray-400 text-sm mt-1">Building strong foundation with honors classes</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">9th-10th Grade</p>
+                    <p className="text-gray-400 text-sm mt-1">AP Human Geography & AP Psychology</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">11th-12th Grade</p>
+                    <p className="text-gray-400 text-sm mt-1">Advanced STEM courses & neuroscience research</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">College (Pre-Med)</p>
+                    <p className="text-gray-400 text-sm mt-1">Maintain 4.0 GPA, focus on neuroscience</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-amber-500/10 border border-amber-500/50 rounded-lg p-4">
+                    <p className="font-bold text-amber-300">🎯 Harvard Medical School</p>
+                    <p className="text-gray-300 text-sm mt-1">Become a neurosurgeon</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cricket Path */}
+            <div className="relative">
+              <h3 className="text-2xl font-bold text-amber-400 mb-8 flex items-center gap-2">
+                <span className="text-3xl">🏏</span>
+                Path to Indian Cricket Team
+              </h3>
+              <div className="space-y-6 relative">
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">Now - 8th Grade</p>
+                    <p className="text-gray-400 text-sm mt-1">NWCC top-order batsman, national trophy winner</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">High School (9-12)</p>
+                    <p className="text-gray-400 text-sm mt-1">School cricket team captain, state-level tournaments</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">College Years</p>
+                    <p className="text-gray-400 text-sm mt-1">University cricket, national competitions</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-slate-800/50 border border-amber-500/30 rounded-lg p-4">
+                    <p className="font-bold text-white">Post-College</p>
+                    <p className="text-gray-400 text-sm mt-1">Domestic cricket leagues, state selection</p>
+                  </div>
+                </div>
+                <div className="roadmap-item">
+                  <div className="bg-amber-500/10 border border-amber-500/50 rounded-lg p-4">
+                    <p className="font-bold text-amber-300">🎯 Indian National Team</p>
+                    <p className="text-gray-300 text-sm mt-1">Represent India on the world stage</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -52,6 +52,8 @@
   --chart-3: #0891b2;
   --chart-4: #059669;
   --chart-5: #047857;
+  --gold: #fbbf24;
+  --gold-dark: #d97706;
   --radius: 0.65rem;
   --background: #0f172a;
   --foreground: #e2e8f0;
@@ -188,6 +190,42 @@
 
 .float {
   animation: float 3s ease-in-out infinite;
+}
+
+.gold-accent {
+  color: #fbbf24;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+.gold-border {
+  border-color: #fbbf24 !important;
+}
+
+.roadmap-item {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+}
+
+.roadmap-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+}
+
+.roadmap-line {
+  position: absolute;
+  left: 0.7rem;
+  top: 2rem;
+  width: 2px;
+  height: calc(100% - 2rem);
+  background: linear-gradient(180deg, #fbbf24, #d97706);
 }
 
 /* Smooth scroll behavior */
